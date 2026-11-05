@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "bbsblur",
+  "version": "${version}",
+  "name": "BBS Blur Clips",
+  "description": "Adds a Blur camera clip to BBS FS with circle, full and actor-focus modes.",
+  "authors": ["you"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["dev.bbsblur.BlurAddon"],
+    "client": ["dev.bbsblur.BlurAddonClient"],
+    "bbs-addon": ["dev.bbsblur.BlurBbsAddon"]
+  },
+  "mixins": [
+    {
+      "config": "bbsblur.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "1.20.1",
+    "java": ">=17",
+    "fabric-api": "*",
+    "bbs": "*"
+  }
+}
