@@ -4,13 +4,12 @@
   "version": "${version}",
   "name": "BBS Blur Clips",
   "description": "Adds a Blur camera clip to BBS FS with circle, full and actor-focus modes.",
-  "authors": ["you"],
+  "authors": ["Pixel-bit0"],
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
     "main": ["dev.bbsblur.BlurAddon"],
-    "client": ["dev.bbsblur.BlurAddonClient"],
-    "bbs-addon": ["dev.bbsblur.BlurBbsAddon"]
+    "client": ["dev.bbsblur.BlurAddonClient"]
   },
   "mixins": [
     {
