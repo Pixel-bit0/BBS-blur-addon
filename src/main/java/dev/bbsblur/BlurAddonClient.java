@@ -6,6 +6,7 @@ import dev.bbsblur.ui.UIBlurClip;
 import mchorse.bbs_mod.ui.film.clips.UIClip;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.CoreShaderRegistrationCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.util.Identifier;
 
@@ -20,7 +21,14 @@ public class BlurAddonClient implements ClientModInitializer
         /* Post-process shader */
         CoreShaderRegistrationCallback.EVENT.register((context) ->
         {
-            context.register(new Identifier(BlurAddon.MOD_ID, "blur"), VertexFormats.POSITION, (program) -> BlurRenderer.program = program);
+            context.register(Identifier.of(BlurAddon.MOD_ID, "blur"), VertexFormats.POSITION, (program) -> BlurRenderer.program = program);
+        });
+
+        /* No mixins: run the blur when the world has finished rendering, using the matrices Fabric hands us */
+        WorldRenderEvents.END.register((context) ->
+        {
+            BlurRenderer.captureMatrices(context.positionMatrix(), context.projectionMatrix(), context.camera().getPos());
+            BlurRenderer.render();
         });
     }
 }

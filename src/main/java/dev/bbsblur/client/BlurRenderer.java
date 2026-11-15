@@ -19,7 +19,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
 
 /**
- * Full-screen blur pass. Runs right after the world is rendered (before the HUD),
+ * Full-screen blur pass. Runs when the world has finished rendering (Fabric WorldRenderEvents.END),
  * driven by whatever the Blur clip submitted to {@link BlurState}.
  */
 public final class BlurRenderer
@@ -36,7 +36,7 @@ public final class BlurRenderer
 
     private BlurRenderer() {}
 
-    /** Called from WorldRendererMixin with the matrices the world is actually drawn with. */
+    /** Called with the matrices the world was actually drawn with. */
     public static void captureMatrices(Matrix4f modelView, Matrix4f projection, Vec3d camera)
     {
         VIEW.set(modelView);
@@ -105,13 +105,12 @@ public final class BlurRenderer
         RenderSystem.setShaderTexture(0, copy.getColorAttachment());
         RenderSystem.setShader(() -> program);
 
-        BufferBuilder buffer = Tessellator.getInstance().getBuffer();
+        BufferBuilder buffer = Tessellator.getInstance().begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION);
 
-        buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION);
-        buffer.vertex(-1, -1, 0).next();
-        buffer.vertex(1, -1, 0).next();
-        buffer.vertex(1, 1, 0).next();
-        buffer.vertex(-1, 1, 0).next();
+        buffer.vertex(-1F, -1F, 0F);
+        buffer.vertex(1F, -1F, 0F);
+        buffer.vertex(1F, 1F, 0F);
+        buffer.vertex(-1F, 1F, 0F);
         BufferRenderer.drawWithGlobalProgram(buffer.end());
 
         RenderSystem.enableCull();

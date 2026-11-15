@@ -1,4 +1,4 @@
-# BBS Blur Clips (addon for BBS FS, Fabric 1.20.1)
+# BBS Blur Clips (addon for BBS FS, Fabric 1.21.1)
 
 Adds a **Blur** camera clip to BBS FS with three modes:
 
@@ -11,7 +11,7 @@ Adds a **Blur** camera clip to BBS FS with three modes:
 Clip settings: strength, circle radius, edge softness, actor index, actor margin.
 The clip's envelope (fade in / fade out) also fades the blur in and out.
 
-Built against **BBS FS 2.5.2-1.20.1** (`libs/bbs-2_5_2-1_20_1.jar`).
+Built against **BBS FS 2.7-1.21.1** (`libs/bbs-2_7-1_21_1.jar`). Needs Java 21.
 
 ## Build on GitHub (no local setup)
 
@@ -34,8 +34,8 @@ Later changes: `git add .`, `git commit -m "msg"`, `git push`.
 
 ## Install
 
-Put `bbs-blur-addon-1.0.0.jar` in `mods/` next to BBS FS 2.5.2, Fabric API, and Fabric Loader. Then in the film editor: Camera clips > Add clip > **Blur**.
+Put `bbs-blur-addon-1.0.0.jar` in `mods/` next to BBS FS 2.7, Fabric API, and Fabric Loader 0.16.14+. Then in the film editor: Camera clips > Add clip > **Blur**.
 
 ## Local build (optional)
 
-Needs JDK 17 and Gradle 8.8+: `gradle build` -> `build/libs/`.
+Needs JDK 21 and Gradle 8.10+: `gradle build` -> `build/libs/`.
